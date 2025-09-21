@@ -10,6 +10,14 @@ interface App {
 
 const apps: App[] = [
   {
+    id: 2,
+    name: "Cheese Test",
+    url: "https://cheesytest.netlify.app/",
+    description:
+      "Un test de personalidad para descubrir qué tipo de queso eres. Desde el clásico cheddar hasta el sofisticado roquefort.",
+    randomWord: "Queso",
+  },
+  {
     id: 1,
     name: "World Compass",
     url: "https://world-compass.netlify.app",
@@ -129,15 +137,33 @@ export default function Home() {
                   </div>
 
                   {/* Preview Image */}
-                  <div className="aspect-video relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 rounded-xl mb-4 group-hover:shadow-lg transition-shadow">
-                    {/* Logo real de World Compass */}
+                  <div
+                    className={`aspect-video relative overflow-hidden rounded-xl mb-4 group-hover:shadow-lg transition-shadow ${
+                      app.id === 2
+                        ? "bg-gradient-to-br from-yellow-600 via-yellow-500 to-yellow-400"
+                        : "bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700"
+                    }`}
+                  >
                     <div className="absolute inset-0 p-6 flex flex-col justify-center items-center text-white">
                       <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mb-4 backdrop-blur-sm p-3">
-                        <img
-                          src="/world-compass.png"
-                          alt="World Compass Logo"
-                          className="w-full h-full object-contain"
-                        />
+                        {app.id === 2 ? (
+                          // Icono de queso para Cheese Test
+                          <div className="w-full h-full flex items-center justify-center">
+                            <svg
+                              viewBox="0 0 24 24"
+                              className="w-full h-full text-yellow-200"
+                              fill="currentColor"
+                            >
+                              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v2h-2V7zm0 4h2v2h-2v-2zm0 4h2v2h-2v-2zm4-8h2v2h-2V7zm0 4h2v2h-2v-2zm0 4h2v2h-2v-2z" />
+                            </svg>
+                          </div>
+                        ) : (
+                          <img
+                            src="/world-compass.png"
+                            alt="World Compass Logo"
+                            className="w-full h-full object-contain"
+                          />
+                        )}
                       </div>
                       <h3 className="text-xl font-bold mb-2 text-center">
                         {app.name}
@@ -149,7 +175,11 @@ export default function Home() {
 
                     {/* Efecto de brillo en las esquinas */}
                     <div className="absolute top-0 left-0 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
-                    <div className="absolute bottom-0 right-0 w-32 h-32 bg-blue-400/20 rounded-full blur-2xl"></div>
+                    <div
+                      className={`absolute bottom-0 right-0 w-32 h-32 rounded-full blur-2xl ${
+                        app.id === 2 ? "bg-yellow-300/20" : "bg-blue-400/20"
+                      }`}
+                    ></div>
                   </div>
 
                   {/* Title */}
@@ -184,13 +214,13 @@ export default function Home() {
                 </a>
               ))}
 
-            {/* Coming Soon Cards - Solo 2 placeholders */}
-            {Array.from({ length: 2 }).map((_, i) => (
-              <div key={i + 2} className="group">
+            {/* Coming Soon Cards - Solo 1 placeholder */}
+            {Array.from({ length: 1 }).map((_, i) => (
+              <div key={i + 3} className="group">
                 {/* Project Number */}
                 <div className="mb-3">
                   <span className="bg-gray-400 text-white text-sm font-bold px-3 py-1 rounded-full">
-                    #{i + 2}
+                    #{i + 3}
                   </span>
                 </div>
 
