@@ -114,7 +114,13 @@ export default function Home() {
               .slice()
               .reverse()
               .map((app) => (
-                <div key={app.id} className="group">
+                <a
+                  key={app.id}
+                  href={app.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block cursor-pointer"
+                >
                   {/* Project Number */}
                   <div className="mb-3">
                     <span className="bg-green-500 text-white text-sm font-bold px-3 py-1 rounded-full">
@@ -123,7 +129,7 @@ export default function Home() {
                   </div>
 
                   {/* Preview Image */}
-                  <div className="aspect-video relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 rounded-xl mb-4">
+                  <div className="aspect-video relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 rounded-xl mb-4 group-hover:shadow-lg transition-shadow">
                     {/* Logo real de World Compass */}
                     <div className="absolute inset-0 p-6 flex flex-col justify-center items-center text-white">
                       <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mb-4 backdrop-blur-sm p-3">
@@ -158,12 +164,7 @@ export default function Home() {
 
                   {/* CTA Button */}
                   <div>
-                    <a
-                      href={app.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium"
-                    >
+                    <div className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium">
                       <svg
                         className="w-4 h-4"
                         fill="none"
@@ -177,10 +178,10 @@ export default function Home() {
                           d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                         />
                       </svg>
-                      Demo
-                    </a>
+                      Ver en vivo
+                    </div>
                   </div>
-                </div>
+                </a>
               ))}
 
             {/* Coming Soon Cards - Solo 2 placeholders */}
