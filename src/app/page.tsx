@@ -10,6 +10,14 @@ interface App {
 
 const apps: App[] = [
   {
+    id: 3,
+    name: "Wardrobe AI",
+    url: "https://wardrobe-ai.netlify.app/",
+    description:
+      "Sube, almacena y crea tus outfits con IA. Organiza tu guardarropa digital y descubre combinaciones perfectas.",
+    randomWord: "Outfit",
+  },
+  {
     id: 2,
     name: "Cheese Test",
     url: "https://cheesytest.netlify.app/",
@@ -118,109 +126,123 @@ export default function Home() {
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {apps
-              .slice()
-              .reverse()
-              .map((app) => (
-                <a
-                  key={app.id}
-                  href={app.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block cursor-pointer"
+            {apps.map((app) => (
+              <a
+                key={app.id}
+                href={app.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block cursor-pointer"
+              >
+                {/* Project Number */}
+                <div className="mb-3">
+                  <span className="bg-green-500 text-white text-sm font-bold px-3 py-1 rounded-full">
+                    #{app.id}
+                  </span>
+                </div>
+
+                {/* Preview Image */}
+                <div
+                  className={`aspect-video relative overflow-hidden rounded-xl mb-4 group-hover:shadow-lg transition-shadow ${
+                    app.id === 3
+                      ? "bg-gradient-to-br from-purple-600 via-purple-500 to-purple-400"
+                      : app.id === 2
+                      ? "bg-gradient-to-br from-yellow-600 via-yellow-500 to-yellow-400"
+                      : "bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700"
+                  }`}
                 >
-                  {/* Project Number */}
-                  <div className="mb-3">
-                    <span className="bg-green-500 text-white text-sm font-bold px-3 py-1 rounded-full">
-                      #{app.id}
-                    </span>
-                  </div>
-
-                  {/* Preview Image */}
-                  <div
-                    className={`aspect-video relative overflow-hidden rounded-xl mb-4 group-hover:shadow-lg transition-shadow ${
-                      app.id === 2
-                        ? "bg-gradient-to-br from-yellow-600 via-yellow-500 to-yellow-400"
-                        : "bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700"
-                    }`}
-                  >
-                    <div className="absolute inset-0 p-6 flex flex-col justify-center items-center text-white">
-                      <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mb-4 backdrop-blur-sm p-3">
-                        {app.id === 2 ? (
-                          // Icono de queso para Cheese Test
-                          <div className="w-full h-full flex items-center justify-center">
-                            <svg
-                              viewBox="0 0 24 24"
-                              className="w-full h-full text-yellow-200"
-                              fill="currentColor"
-                            >
-                              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v2h-2V7zm0 4h2v2h-2v-2zm0 4h2v2h-2v-2zm4-8h2v2h-2V7zm0 4h2v2h-2v-2zm0 4h2v2h-2v-2z" />
-                            </svg>
-                          </div>
-                        ) : (
-                          <img
-                            src="/world-compass.png"
-                            alt="World Compass Logo"
-                            className="w-full h-full object-contain"
-                          />
-                        )}
-                      </div>
-                      <h3 className="text-xl font-bold mb-2 text-center">
-                        {app.name}
-                      </h3>
-                    </div>
-
-                    {/* Overlay para efecto de pantalla */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-
-                    {/* Efecto de brillo en las esquinas */}
-                    <div className="absolute top-0 left-0 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
-                    <div
-                      className={`absolute bottom-0 right-0 w-32 h-32 rounded-full blur-2xl ${
-                        app.id === 2 ? "bg-yellow-300/20" : "bg-blue-400/20"
-                      }`}
-                    ></div>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-800 mb-2 group-hover:text-green-600 transition-colors">
-                    {app.name}
-                  </h3>
-
-                  {/* Subtitle */}
-                  <p className="text-gray-600 leading-relaxed mb-4">
-                    {app.description}
-                  </p>
-
-                  {/* CTA Button */}
-                  <div>
-                    <div className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  <div className="absolute inset-0 p-6 flex flex-col justify-center items-center text-white">
+                    <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mb-4 backdrop-blur-sm p-3">
+                      {app.id === 3 ? (
+                        // Icono de camiseta para Wardrobe AI
+                        <div className="w-full h-full flex items-center justify-center">
+                          <svg
+                            viewBox="0 0 24 24"
+                            className="w-full h-full text-purple-200"
+                            fill="currentColor"
+                          >
+                            <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 7H17c-.8 0-1.54.37-2.01.99L14 9h-2l-.99-1.01A2.5 2.5 0 0 0 9 7H7.46c-.8 0-1.54.37-2.01.99L3 8.37V22h2v-6h2v6h2v-6h2v6h2v-6h2v6h2z" />
+                          </svg>
+                        </div>
+                      ) : app.id === 2 ? (
+                        // Icono de queso para Cheese Test
+                        <div className="w-full h-full flex items-center justify-center">
+                          <svg
+                            viewBox="0 0 24 24"
+                            className="w-full h-full text-yellow-200"
+                            fill="currentColor"
+                          >
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v2h-2V7zm0 4h2v2h-2v-2zm0 4h2v2h-2v-2zm4-8h2v2h-2V7zm0 4h2v2h-2v-2zm0 4h2v2h-2v-2z" />
+                          </svg>
+                        </div>
+                      ) : (
+                        <img
+                          src="/world-compass.png"
+                          alt="World Compass Logo"
+                          className="w-full h-full object-contain"
                         />
-                      </svg>
-                      Ver en vivo
+                      )}
                     </div>
+                    <h3 className="text-xl font-bold mb-2 text-center">
+                      {app.name}
+                    </h3>
                   </div>
-                </a>
-              ))}
 
-            {/* Coming Soon Cards - Solo 1 placeholder */}
-            {Array.from({ length: 1 }).map((_, i) => (
-              <div key={i + 3} className="group">
+                  {/* Overlay para efecto de pantalla */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+
+                  {/* Efecto de brillo en las esquinas */}
+                  <div className="absolute top-0 left-0 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
+                  <div
+                    className={`absolute bottom-0 right-0 w-32 h-32 rounded-full blur-2xl ${
+                      app.id === 3
+                        ? "bg-purple-300/20"
+                        : app.id === 2
+                        ? "bg-yellow-300/20"
+                        : "bg-blue-400/20"
+                    }`}
+                  ></div>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xl lg:text-2xl font-bold text-gray-800 mb-2 group-hover:text-green-600 transition-colors">
+                  {app.name}
+                </h3>
+
+                {/* Subtitle */}
+                <p className="text-gray-600 leading-relaxed mb-4">
+                  {app.description}
+                </p>
+
+                {/* CTA Button */}
+                <div>
+                  <div className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium">
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                    Ver en vivo
+                  </div>
+                </div>
+              </a>
+            ))}
+
+            {/* Coming Soon Cards - Solo 7 placeholders */}
+            {Array.from({ length: 7 }).map((_, i) => (
+              <div key={i + 4} className="group">
                 {/* Project Number */}
                 <div className="mb-3">
                   <span className="bg-gray-400 text-white text-sm font-bold px-3 py-1 rounded-full">
-                    #{i + 3}
+                    #{i + 4}
                   </span>
                 </div>
 
